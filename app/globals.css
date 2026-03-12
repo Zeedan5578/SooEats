@@ -1,8 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf8f5;
+  --foreground: #2d2418;
+  
+  /* Cafe-themed color palette */
+  --cafe-brown-50: #faf8f5;
+  --cafe-brown-100: #f5f0e8;
+  --cafe-brown-200: #e8dcc8;
+  --cafe-brown-300: #d4c0a0;
+  --cafe-brown-400: #b89968;
+  --cafe-brown-500: #8b6f47;
+  --cafe-brown-600: #6b5538;
+  --cafe-brown-700: #4a3a26;
+  --cafe-brown-800: #2d2418;
+  --cafe-brown-900: #1a140d;
+  --cafe-cream: #f5f0e8;
+  --cafe-beige: #e8dcc8;
+  --cafe-orange: #d97706;
 }
 
 @theme inline {
@@ -10,13 +25,25 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  
+  /* Cafe color tokens */
+  --color-cafe-brown-50: var(--cafe-brown-50);
+  --color-cafe-brown-100: var(--cafe-brown-100);
+  --color-cafe-brown-200: var(--cafe-brown-200);
+  --color-cafe-brown-300: var(--cafe-brown-300);
+  --color-cafe-brown-400: var(--cafe-brown-400);
+  --color-cafe-brown-500: var(--cafe-brown-500);
+  --color-cafe-brown-600: var(--cafe-brown-600);
+  --color-cafe-brown-700: var(--cafe-brown-700);
+  --color-cafe-brown-800: var(--cafe-brown-800);
+  --color-cafe-brown-900: var(--cafe-brown-900);
+  --color-cafe-cream: var(--cafe-cream);
+  --color-cafe-beige: var(--cafe-beige);
+  --color-cafe-orange: var(--cafe-orange);
+  
+  /* Custom design tokens */
+  --shadow-soft: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+  --radius-card: 12px;
 }
 
 body {
