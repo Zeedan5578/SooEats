@@ -166,8 +166,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURED FAVORITES - Horizontal scroll */}
-      <section className="bg-brown-50 py-28">
+      {/* FEATURED FAVORITES - Auto-scrolling infinite marquee */}
+      <section className="bg-brown-50 py-28 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeUp} className="text-center mb-16">
             <p className="text-[11px] uppercase tracking-[0.35em] text-orange-500 mb-4">
@@ -177,18 +177,26 @@ export default function Home() {
               Featured Favorites
             </h2>
           </motion.div>
+        </div>
 
-          <div className="scroll-x flex gap-6 pb-4 -mx-4 px-4">
-            {menuItems.slice(0, 6).map((item, i) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="flex-shrink-0 w-[300px] group"
-              >
-                <div className="relative aspect-[3/4] w-full overflow-hidden mb-4">
+        {/* Constrained marquee track */}
+        <div className="relative max-w-7xl mx-auto overflow-hidden">
+          {/* Fade edges — anchored to the true left/right of the container */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(to right, #fdfaf6, transparent)' }} />
+          <div className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(to left, #fdfaf6, transparent)' }} />
+
+          <motion.div
+            className="flex gap-6"
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{ duration: 30, ease: 'linear', repeat: Infinity }}
+            style={{ width: 'max-content' }}
+          >
+            {/* Render items twice for seamless loop */}
+            {[...menuItems, ...menuItems].map((item, i) => (
+              <div key={`${item.id}-${i}`} className="flex-shrink-0 w-[280px] group">
+                <div className="relative w-[280px] h-[360px] overflow-hidden mb-4">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -196,7 +204,7 @@ export default function Home() {
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
-                <div className="flex justify-between items-start">
+                <div className="flex justify-between items-start px-1">
                   <div>
                     <h3 className="font-display font-bold text-lg text-brown-900">{item.name}</h3>
                     <p className="text-brown-400 text-sm mt-1">{item.description}</p>
@@ -205,10 +213,12 @@ export default function Home() {
                     ${item.price.toFixed(2)}
                   </span>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </div>
+          </motion.div>
+        </div>
 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeUp} className="text-center mt-12">
             <Link href="/menu">
               <Button variant="secondary" className="rounded-none border-brown-900 text-brown-900 hover:bg-brown-900 hover:text-white px-10 py-3 text-sm uppercase tracking-widest transition-colors duration-300">
