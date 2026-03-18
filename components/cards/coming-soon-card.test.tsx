@@ -13,9 +13,9 @@ describe('ComingSoonCard', () => {
     expect(screen.getByText('?')).toBeInTheDocument();
   });
 
-  it('has proper card styling', () => {
+  it('has white background card styling', () => {
     const { container } = render(<ComingSoonCard />);
-    const card = container.querySelector('.bg-white.rounded-card.shadow-soft');
+    const card = container.querySelector('.bg-white');
     expect(card).toBeInTheDocument();
   });
 

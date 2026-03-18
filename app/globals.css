@@ -1,53 +1,163 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf8f5;
-  --foreground: #2d2418;
-  
-  /* Cafe-themed color palette */
-  --cafe-brown-50: #faf8f5;
-  --cafe-brown-100: #f5f0e8;
-  --cafe-brown-200: #e8dcc8;
-  --cafe-brown-300: #d4c0a0;
-  --cafe-brown-400: #b89968;
-  --cafe-brown-500: #8b6f47;
-  --cafe-brown-600: #6b5538;
-  --cafe-brown-700: #4a3a26;
-  --cafe-brown-800: #2d2418;
-  --cafe-brown-900: #1a140d;
-  --cafe-cream: #f5f0e8;
-  --cafe-beige: #e8dcc8;
-  --cafe-orange: #d97706;
+  --background: #fdfaf6;
+  --foreground: #1c1208;
+
+  /* Primary: Vibrant Orange */
+  --orange-50:  #fff7ed;
+  --orange-100: #ffedd5;
+  --orange-200: #fed7aa;
+  --orange-400: #fb923c;
+  --orange-500: #f97316;
+  --orange-600: #ea580c;
+  --orange-700: #c2410c;
+
+  /* Secondary: Fresh Green */
+  --green-50:  #f0fdf4;
+  --green-100: #dcfce7;
+  --green-400: #4ade80;
+  --green-500: #22c55e;
+  --green-600: #16a34a;
+  --green-700: #15803d;
+
+  /* Accent: Earthy Brown */
+  --brown-50:  #fdfaf6;
+  --brown-100: #f5ede0;
+  --brown-200: #e8d5b7;
+  --brown-300: #d4b896;
+  --brown-400: #b8926a;
+  --brown-500: #8b6340;
+  --brown-600: #6b4c2e;
+  --brown-700: #4a3420;
+  --brown-800: #2d1f12;
+  --brown-900: #1c1208;
+
+  /* Neutrals */
+  --cream: #fdf8f0;
+  --warm-white: #fffef9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  
-  /* Cafe color tokens */
-  --color-cafe-brown-50: var(--cafe-brown-50);
-  --color-cafe-brown-100: var(--cafe-brown-100);
-  --color-cafe-brown-200: var(--cafe-brown-200);
-  --color-cafe-brown-300: var(--cafe-brown-300);
-  --color-cafe-brown-400: var(--cafe-brown-400);
-  --color-cafe-brown-500: var(--cafe-brown-500);
-  --color-cafe-brown-600: var(--cafe-brown-600);
-  --color-cafe-brown-700: var(--cafe-brown-700);
-  --color-cafe-brown-800: var(--cafe-brown-800);
-  --color-cafe-brown-900: var(--cafe-brown-900);
-  --color-cafe-cream: var(--cafe-cream);
-  --color-cafe-beige: var(--cafe-beige);
-  --color-cafe-orange: var(--cafe-orange);
-  
-  /* Custom design tokens */
-  --shadow-soft: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
-  --radius-card: 12px;
+
+  /* Orange */
+  --color-orange-50:  var(--orange-50);
+  --color-orange-100: var(--orange-100);
+  --color-orange-200: var(--orange-200);
+  --color-orange-400: var(--orange-400);
+  --color-orange-500: var(--orange-500);
+  --color-orange-600: var(--orange-600);
+  --color-orange-700: var(--orange-700);
+
+  /* Green */
+  --color-green-50:  var(--green-50);
+  --color-green-100: var(--green-100);
+  --color-green-400: var(--green-400);
+  --color-green-500: var(--green-500);
+  --color-green-600: var(--green-600);
+  --color-green-700: var(--green-700);
+
+  /* Brown */
+  --color-brown-50:  var(--brown-50);
+  --color-brown-100: var(--brown-100);
+  --color-brown-200: var(--brown-200);
+  --color-brown-300: var(--brown-300);
+  --color-brown-400: var(--brown-400);
+  --color-brown-500: var(--brown-500);
+  --color-brown-600: var(--brown-600);
+  --color-brown-700: var(--brown-700);
+  --color-brown-800: var(--brown-800);
+  --color-brown-900: var(--brown-900);
+
+  /* Legacy aliases so existing tests keep passing */
+  --color-cafe-brown-50:  var(--brown-50);
+  --color-cafe-brown-100: var(--brown-100);
+  --color-cafe-brown-200: var(--brown-200);
+  --color-cafe-brown-300: var(--brown-300);
+  --color-cafe-brown-400: var(--brown-400);
+  --color-cafe-brown-500: var(--brown-500);
+  --color-cafe-brown-600: var(--brown-600);
+  --color-cafe-brown-700: var(--brown-700);
+  --color-cafe-brown-800: var(--brown-800);
+  --color-cafe-brown-900: var(--brown-900);
+  --color-cafe-cream:     var(--cream);
+  --color-cafe-beige:     var(--brown-200);
+  --color-cafe-orange:    var(--orange-500);
+
+  /* Neutrals */
+  --color-cream:      var(--cream);
+  --color-warm-white: var(--warm-white);
+
+  /* Shadows */
+  --shadow-soft:   0 2px 20px -4px rgba(0,0,0,0.08), 0 8px 24px -6px rgba(0,0,0,0.05);
+  --shadow-card:   0 4px 32px -8px rgba(0,0,0,0.12);
+  --shadow-strong: 0 8px 48px -12px rgba(0,0,0,0.2);
+
+  /* Radii */
+  --radius-card: 16px;
+  --radius-pill: 9999px;
 }
+
+/* Base */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Typography helpers */
+.font-display {
+  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
+}
+
+/* Gradient helpers */
+.gradient-orange {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+.gradient-green {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+.gradient-warm {
+  background: linear-gradient(135deg, #fdf8f0 0%, #f5ede0 100%);
+}
+.gradient-hero {
+  background: linear-gradient(160deg, #1c1208 0%, #4a3420 50%, #6b4c2e 100%);
+}
+
+/* Horizontal scroll */
+.scroll-x {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroll-x::-webkit-scrollbar { display: none; }
+.scroll-x > * {
+  scroll-snap-align: start;
+}
+
+/* Divider */
+.section-divider {
+  width: 48px;
+  height: 2px;
+  background: var(--orange-500);
+  border-radius: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--brown-100); }
+::-webkit-scrollbar-thumb { background: var(--brown-300); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brown-400); }
+
+/* Selection */
+::selection { background: var(--orange-200); color: var(--brown-900); }

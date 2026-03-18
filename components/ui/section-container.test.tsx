@@ -9,7 +9,6 @@ describe('SectionContainer', () => {
         <p>Test content</p>
       </SectionContainer>
     );
-    
     expect(getByText('Test content')).toBeInTheDocument();
   });
 
@@ -19,20 +18,18 @@ describe('SectionContainer', () => {
         <p>Test content</p>
       </SectionContainer>
     );
-    
     const section = container.querySelector('section');
-    expect(section).toHaveClass('mx-auto', 'max-w-7xl', 'px-4', 'py-12');
+    expect(section).toHaveClass('mx-auto', 'max-w-7xl', 'px-4', 'py-16');
   });
 
   it('merges custom className with default classes', () => {
     const { container } = render(
-      <SectionContainer className="bg-cafe-cream">
+      <SectionContainer className="bg-brown-50">
         <p>Test content</p>
       </SectionContainer>
     );
-    
     const section = container.querySelector('section');
-    expect(section).toHaveClass('mx-auto', 'max-w-7xl', 'bg-cafe-cream');
+    expect(section).toHaveClass('mx-auto', 'max-w-7xl', 'bg-brown-50');
   });
 
   it('uses semantic section element', () => {
@@ -41,7 +38,6 @@ describe('SectionContainer', () => {
         <p>Test content</p>
       </SectionContainer>
     );
-    
     expect(container.querySelector('section')).toBeInTheDocument();
   });
 });

@@ -12,7 +12,7 @@ describe('ChatBubble', () => {
     const { container } = render(
       <ChatBubble message="System message" sender="system" />
     );
-    const bubble = container.querySelector('.bg-cafe-brown-100');
+    const bubble = container.querySelector('.bg-brown-50');
     expect(bubble).toBeInTheDocument();
   });
 
@@ -20,7 +20,7 @@ describe('ChatBubble', () => {
     const { container } = render(
       <ChatBubble message="User message" sender="user" />
     );
-    const bubble = container.querySelector('.bg-cafe-orange');
+    const bubble = container.querySelector('.gradient-orange');
     expect(bubble).toBeInTheDocument();
   });
 

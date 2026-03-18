@@ -11,166 +11,173 @@ interface CarouselProps {
   autoplayInterval?: number;
 }
 
-export function Carousel({ items, autoplayInterval = 3000 }: CarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export function Carousel({ items, autoplayInterval = 4000 }: CarouselProps) {
+  const [currentIndex, setCurrentIndex]       = useState(0);
   const [isAutoplayPaused, setIsAutoplayPaused] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [touchStart, setTouchStart]           = useState<number | null>(null);
+  const [touchEnd, setTouchEnd]               = useState<number | null>(null);
+  const [direction, setDirection]             = useState(1); // 1 = forward, -1 = back
 
-  // Minimum swipe distance (in px)
   const minSwipeDistance = 50;
 
   const goToNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % items.length);
+    setDirection(1);
+    setCurrentIndex((p) => (p + 1) % items.length);
   }, [items.length]);
 
   const goToPrevious = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+    setDirection(-1);
+    setCurrentIndex((p) => (p - 1 + items.length) % items.length);
   }, [items.length]);
 
   const goToSlide = useCallback((index: number) => {
+    setDirection(index > currentIndex ? 1 : -1);
     setCurrentIndex(index);
     setIsAutoplayPaused(true);
-  }, []);
+  }, [currentIndex]);
 
-  // Autoplay functionality
   useEffect(() => {
     if (isAutoplayPaused || items.length <= 1) return;
-
-    const timer = setInterval(() => {
-      goToNext();
-    }, autoplayInterval);
-
+    const timer = setInterval(goToNext, autoplayInterval);
     return () => clearInterval(timer);
   }, [currentIndex, isAutoplayPaused, items.length, autoplayInterval, goToNext]);
 
-  // Touch event handlers for mobile swipe
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
+  const onTouchMove  = (e: React.TouchEvent) => setTouchEnd(e.targetTouches[0].clientX);
+  const onTouchEnd   = () => {
     if (!touchStart || !touchEnd) return;
-
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      goToNext();
-      setIsAutoplayPaused(true);
-    }
-    if (isRightSwipe) {
-      goToPrevious();
-      setIsAutoplayPaused(true);
-    }
+    const dist = touchStart - touchEnd;
+    if (dist > minSwipeDistance)  { goToNext();     setIsAutoplayPaused(true); }
+    if (dist < -minSwipeDistance) { goToPrevious(); setIsAutoplayPaused(true); }
   };
 
-  // Handle manual navigation
-  const handlePrevious = () => {
-    goToPrevious();
-    setIsAutoplayPaused(true);
-  };
-
-  const handleNext = () => {
-    goToNext();
-    setIsAutoplayPaused(true);
-  };
+  const handlePrev = () => { goToPrevious(); setIsAutoplayPaused(true); };
+  const handleNext = () => { goToNext();     setIsAutoplayPaused(true); };
 
   if (items.length === 0) {
-    return (
-      <div className="text-center py-12 text-cafe-brown-600">
-        No items to display
-      </div>
-    );
+    return <div className="text-center py-12 text-brown-500">No items to display</div>;
   }
 
-  const currentItem = items[currentIndex];
+  const item = items[currentIndex];
+
+  const variants = {
+    enter:  (d: number) => ({ opacity: 0, x: d > 0 ? 80 : -80 }),
+    center: { opacity: 1, x: 0 },
+    exit:   (d: number) => ({ opacity: 0, x: d > 0 ? -80 : 80 }),
+  };
 
   return (
     <div
-      className="relative w-full max-w-4xl mx-auto"
+      className="relative w-full"
       onMouseEnter={() => setIsAutoplayPaused(true)}
       onMouseLeave={() => setIsAutoplayPaused(false)}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      {/* Main carousel content */}
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] [box-shadow:var(--shadow-soft)]">
-        <AnimatePresence mode="wait">
+      {/* Main card */}
+      <div className="relative overflow-hidden rounded-3xl shadow-[var(--shadow-strong)] bg-white">
+        <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className="absolute inset-0"
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="grid grid-cols-1 lg:grid-cols-2"
           >
-            {/* Image */}
-            <div className="relative w-full h-2/3">
+            {/* Image side */}
+            <div className="relative h-72 lg:h-[520px]">
               <Image
-                src={currentItem.image}
-                alt={currentItem.name}
+                src={item.image}
+                alt={item.name}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 priority={currentIndex === 0}
               />
+              {/* Category badge */}
+              {item.category && (
+                <span className="absolute top-5 left-5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-brown-700 capitalize shadow-sm">
+                  {item.category}
+                </span>
+              )}
             </div>
 
-            {/* Content */}
-            <div className="absolute bottom-0 left-0 right-0 bg-white p-6 h-1/3">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-2xl font-semibold text-cafe-brown-800">
-                  {currentItem.name}
-                </h3>
-                <span className="text-xl font-bold text-cafe-orange">
-                  ${currentItem.price.toFixed(2)}
+            {/* Content side */}
+            <div className="flex flex-col justify-center p-8 lg:p-12">
+              <span className="text-orange-500 text-sm font-semibold uppercase tracking-widest mb-3">
+                Featured Item
+              </span>
+              <h2 className="font-display font-bold text-3xl lg:text-4xl text-brown-900 mb-4 leading-tight">
+                {item.name}
+              </h2>
+              <p className="text-brown-500 leading-relaxed mb-6 text-base">
+                {item.description}
+              </p>
+
+              {/* Macros mini-row */}
+              <div className="flex gap-4 mb-8">
+                {[
+                  { label: 'Cal', value: `${item.macros.calories}` },
+                  { label: 'Protein', value: `${item.macros.protein}g` },
+                  { label: 'Carbs', value: `${item.macros.carbs}g` },
+                  { label: 'Fats', value: `${item.macros.fats}g` },
+                ].map((m) => (
+                  <div key={m.label} className="text-center">
+                    <p className="font-bold text-brown-900 text-sm">{m.value}</p>
+                    <p className="text-brown-400 text-xs">{m.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Price */}
+              <div className="flex items-center justify-between">
+                <span className="font-display font-bold text-3xl text-orange-500">
+                  ${item.price.toFixed(2)}
+                </span>
+                <span className="px-4 py-2 rounded-full gradient-orange text-white text-sm font-semibold shadow-md">
+                  Order Now
                 </span>
               </div>
-              <p className="text-cafe-brown-600 leading-relaxed">
-                {currentItem.description}
-              </p>
             </div>
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation arrows */}
+        {/* Nav arrows */}
         <button
-          onClick={handlePrevious}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-cafe-brown-800 rounded-full p-2 transition-all duration-200 [box-shadow:var(--shadow-soft)] hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cafe-orange focus:ring-offset-2"
+          onClick={handlePrev}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center text-brown-800 hover:bg-white hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 z-10"
           aria-label="Previous item"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5" />
         </button>
-
         <button
           onClick={handleNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-cafe-brown-800 rounded-full p-2 transition-all duration-200 [box-shadow:var(--shadow-soft)] hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cafe-orange focus:ring-offset-2"
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center text-brown-800 hover:bg-white hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 z-10"
           aria-label="Next item"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5" />
         </button>
       </div>
 
-      {/* Dots indicator */}
-      <div className="flex justify-center gap-2 mt-4">
-        {items.map((_, index) => (
+      {/* Dots */}
+      <div className="flex justify-center gap-2 mt-6">
+        {items.map((_, i) => (
           <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cafe-orange focus:ring-offset-2 ${
-              index === currentIndex
-                ? 'bg-cafe-orange w-8'
-                : 'bg-cafe-brown-300 hover:bg-cafe-brown-400'
+            key={i}
+            onClick={() => goToSlide(i)}
+            className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${
+              i === currentIndex
+                ? 'w-8 gradient-orange'
+                : 'w-2 bg-brown-200 hover:bg-brown-300'
             }`}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={`Go to slide ${i + 1}`}
           />
         ))}
       </div>

@@ -1,23 +1,120 @@
-import { PageHeader } from '@/components/ui/page-header';
-import { SectionContainer } from '@/components/ui/section-container';
-import { Carousel } from '@/components/menu/carousel';
+'use client';
+
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { menuItems } from '@/lib/data/menu';
 
-export const metadata = {
-  title: 'Menu - Cafe4Good',
-  description: 'Explore our delicious selection of fresh, healthy meals',
+const categories = ['breakfast', 'lunch', 'drinks'] as const;
+
+const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.7, ease: 'easeOut' as const },
 };
 
 export default function MenuPage() {
   return (
     <main>
-      <SectionContainer>
-        <PageHeader
-          title="Our Menu"
-          subtitle="Discover our selection of fresh, healthy, and delicious meals"
-        />
-        <Carousel items={menuItems} />
-      </SectionContainer>
+      {/* Hero - Full-width image */}
+      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="https://picsum.photos/seed/menu-hero/1600/800"
+            alt="Our menu"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-brown-900/50" />
+        </div>
+        <div className="relative z-10 text-center text-white px-4">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="text-[11px] uppercase tracking-[0.35em] text-white/70 mb-4"
+          >
+            What we serve
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="font-display font-bold text-4xl sm:text-5xl md:text-6xl"
+          >
+            Our Menu
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-white/60 text-lg mt-4 max-w-lg mx-auto"
+          >
+            Seasonal ingredients, bold flavours, crafted fresh every single day.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Menu sections by category */}
+      {categories.map((category) => {
+        const items = menuItems.filter((item) => item.category === category);
+        return (
+          <section key={category} className="py-24 even:bg-brown-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div {...fadeUp} className="mb-14">
+                <p className="text-[11px] uppercase tracking-[0.35em] text-orange-500 mb-3">
+                  {category}
+                </p>
+                <div className="section-divider" />
+              </motion.div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                {items.map((item, i) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    className="group"
+                  >
+                    <div className="relative aspect-[4/3] w-full overflow-hidden mb-5">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
+                    <div className="flex justify-between items-start gap-4">
+                      <div>
+                        <h3 className="font-display font-bold text-xl text-brown-900 mb-1">
+                          {item.name}
+                        </h3>
+                        <p className="text-brown-400 text-sm leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                      <span className="font-display font-bold text-xl text-orange-500 shrink-0">
+                        ${item.price.toFixed(2)}
+                      </span>
+                    </div>
+                    {/* Macro row */}
+                    <div className="flex gap-6 mt-3 text-xs text-brown-400">
+                      <span>{item.macros.calories} cal</span>
+                      <span>{item.macros.protein}g protein</span>
+                      <span>{item.macros.carbs}g carbs</span>
+                      <span>{item.macros.fats}g fats</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })}
     </main>
   );
 }

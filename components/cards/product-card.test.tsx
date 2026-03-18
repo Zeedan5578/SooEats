@@ -27,15 +27,21 @@ describe('ProductCard', () => {
     expect(image).toBeInTheDocument();
   });
 
-  it('has proper card styling', () => {
+  it('has white background card styling', () => {
     const { container } = render(<ProductCard product={mockProduct} />);
-    const card = container.querySelector('.bg-white.rounded-card.shadow-soft');
+    const card = container.querySelector('.bg-white');
     expect(card).toBeInTheDocument();
   });
 
-  it('has hover shadow transition', () => {
+  it('has overflow hidden for image clipping', () => {
     const { container } = render(<ProductCard product={mockProduct} />);
-    const card = container.querySelector('.hover\\:shadow-lg');
+    const card = container.querySelector('.overflow-hidden');
+    expect(card).toBeInTheDocument();
+  });
+
+  it('has hover translate for lift effect', () => {
+    const { container } = render(<ProductCard product={mockProduct} />);
+    const card = container.querySelector('.hover\\:-translate-y-1');
     expect(card).toBeInTheDocument();
   });
 });

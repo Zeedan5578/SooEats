@@ -7,29 +7,20 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="bg-white rounded-card shadow-soft overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      {/* Product Image */}
-      <div className="relative h-56 w-full">
+    <div className="bg-white rounded-[var(--radius-card)] overflow-hidden [box-shadow:var(--shadow-soft)] hover:[box-shadow:var(--shadow-card)] hover:-translate-y-1 transition-all duration-300 group">
+      <div className="relative h-56 w-full overflow-hidden">
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className="object-cover"
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-brown-900/30 to-transparent" />
       </div>
-
-      {/* Content */}
-      <div className="p-6">
-        {/* Product Name */}
-        <h3 className="text-xl font-semibold text-cafe-brown-800 mb-3">
-          {product.name}
-        </h3>
-
-        {/* Product Description */}
-        <p className="text-cafe-brown-600 text-sm leading-relaxed">
-          {product.description}
-        </p>
+      <div className="p-5">
+        <h3 className="font-display font-bold text-lg text-brown-900 mb-2">{product.name}</h3>
+        <p className="text-brown-500 text-sm leading-relaxed">{product.description}</p>
       </div>
     </div>
   );

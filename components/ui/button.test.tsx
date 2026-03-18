@@ -12,34 +12,34 @@ describe('Button Component', () => {
   it('renders with primary variant', () => {
     render(<Button variant="primary">Primary Button</Button>);
     const button = screen.getByRole('button', { name: /primary button/i });
-    expect(button).toHaveClass('bg-cafe-brown-600');
+    expect(button).toHaveClass('gradient-orange');
   });
 
   it('renders with secondary variant', () => {
     render(<Button variant="secondary">Secondary Button</Button>);
     const button = screen.getByRole('button', { name: /secondary button/i });
-    expect(button).toHaveClass('bg-cafe-cream');
+    expect(button).toHaveClass('bg-white');
   });
 
   it('renders with small size', () => {
     render(<Button size="sm">Small</Button>);
     const button = screen.getByRole('button', { name: /small/i });
-    expect(button).toHaveClass('px-3');
+    expect(button).toHaveClass('px-4');
     expect(button).toHaveClass('py-1.5');
   });
 
   it('renders with medium size', () => {
     render(<Button size="md">Medium</Button>);
     const button = screen.getByRole('button', { name: /medium/i });
-    expect(button).toHaveClass('px-4');
-    expect(button).toHaveClass('py-2');
+    expect(button).toHaveClass('px-6');
+    expect(button).toHaveClass('py-2.5');
   });
 
   it('renders with large size', () => {
     render(<Button size="lg">Large</Button>);
     const button = screen.getByRole('button', { name: /large/i });
-    expect(button).toHaveClass('px-6');
-    expect(button).toHaveClass('py-3');
+    expect(button).toHaveClass('px-8');
+    expect(button).toHaveClass('py-3.5');
   });
 
   it('applies custom className', () => {
@@ -60,7 +60,7 @@ describe('Button Component', () => {
     const button = screen.getByRole('button', { name: /focus test/i });
     expect(button).toHaveClass('focus:outline-none');
     expect(button).toHaveClass('focus:ring-2');
-    expect(button).toHaveClass('focus:ring-cafe-orange');
+    expect(button).toHaveClass('focus:ring-orange-500');
   });
 
   it('has hover transition styles', () => {

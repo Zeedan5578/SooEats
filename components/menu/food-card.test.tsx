@@ -40,22 +40,22 @@ describe('FoodCard Component', () => {
     expect(image).toBeInTheDocument();
   });
 
-  it('applies cafe-themed styling to name', () => {
+  it('applies theme styling to name', () => {
     render(<FoodCard item={mockFoodItem} />);
     const name = screen.getByText('Test Avocado Toast');
-    expect(name).toHaveClass('text-cafe-brown-800');
+    expect(name).toHaveClass('text-brown-900');
   });
 
-  it('applies cafe-themed styling to price', () => {
+  it('applies theme styling to price', () => {
     render(<FoodCard item={mockFoodItem} />);
     const price = screen.getByText('$12.99');
-    expect(price).toHaveClass('text-cafe-orange');
+    expect(price).toHaveClass('text-orange-500');
   });
 
-  it('applies cafe-themed styling to description', () => {
+  it('applies theme styling to description', () => {
     render(<FoodCard item={mockFoodItem} />);
     const description = screen.getByText('Fresh avocado on artisan bread');
-    expect(description).toHaveClass('text-cafe-brown-600');
+    expect(description).toHaveClass('text-brown-500');
   });
 
   it('formats price with two decimal places', () => {

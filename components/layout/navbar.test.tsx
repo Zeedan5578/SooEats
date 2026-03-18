@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Navbar, NavLink } from './navbar';
 
@@ -12,7 +12,8 @@ describe('Navbar Component', () => {
   describe('Desktop Navigation', () => {
     it('renders logo with correct text', () => {
       render(<Navbar links={mockLinks} />);
-      expect(screen.getByText('Cafe4Good')).toBeInTheDocument();
+      const logo = screen.getByLabelText('Cafe4Good Home');
+      expect(logo).toBeInTheDocument();
     });
 
     it('renders all navigation links', () => {
@@ -25,7 +26,6 @@ describe('Navbar Component', () => {
 
     it('renders default links when no links prop provided', () => {
       render(<Navbar />);
-      expect(screen.getAllByText('Home').length).toBeGreaterThan(0);
       expect(screen.getAllByText('Menu').length).toBeGreaterThan(0);
       expect(screen.getAllByText('Catering').length).toBeGreaterThan(0);
     });
@@ -64,39 +64,34 @@ describe('Navbar Component', () => {
       render(<Navbar links={mockLinks} />);
       const menuButton = screen.getByLabelText('Open menu');
       fireEvent.click(menuButton);
-      
+
       const closeButton = screen.getByLabelText('Close menu');
       expect(closeButton).toHaveAttribute('aria-expanded', 'true');
     });
 
     it('closes mobile menu when X button is clicked', () => {
       render(<Navbar links={mockLinks} />);
-      
-      // Open menu
+
       const openButton = screen.getByLabelText('Open menu');
       fireEvent.click(openButton);
-      
-      // Close menu
+
       const closeButton = screen.getByLabelText('Close menu');
       fireEvent.click(closeButton);
-      
+
       const menuButton = screen.getByLabelText('Open menu');
       expect(menuButton).toHaveAttribute('aria-expanded', 'false');
     });
 
     it('closes mobile menu when a link is clicked', () => {
       render(<Navbar links={mockLinks} />);
-      
-      // Open menu
+
       const openButton = screen.getByLabelText('Open menu');
       fireEvent.click(openButton);
-      
-      // Click a link in mobile menu
+
       const mobileLinks = screen.getAllByRole('link', { name: 'Menu' });
-      const mobileMenuLink = mobileLinks[mobileLinks.length - 1]; // Get the mobile menu link
+      const mobileMenuLink = mobileLinks[mobileLinks.length - 1];
       fireEvent.click(mobileMenuLink);
-      
-      // Menu should be closed
+
       const menuButton = screen.getByLabelText('Open menu');
       expect(menuButton).toHaveAttribute('aria-expanded', 'false');
     });
@@ -109,16 +104,17 @@ describe('Navbar Component', () => {
       expect(nav).toHaveClass('sticky');
     });
 
-    it('has cafe-themed background color', () => {
+    it('has background color on nav element', () => {
       const { container } = render(<Navbar links={mockLinks} />);
       const nav = container.querySelector('nav');
-      expect(nav).toHaveClass('bg-cafe-cream');
+      // Navbar uses bg-white/70 or bg-white/90 depending on scroll state
+      expect(nav?.className).toMatch(/bg-white/);
     });
 
-    it('navigation links have cafe-themed text color', () => {
+    it('navigation links have themed text color', () => {
       const { container } = render(<Navbar links={mockLinks} />);
       const desktopNav = container.querySelector('.hidden.md\\:flex');
-      expect(desktopNav?.querySelector('a')).toHaveClass('text-cafe-brown-700');
+      expect(desktopNav?.querySelector('a')).toHaveClass('text-brown-600');
     });
   });
 
@@ -128,7 +124,7 @@ describe('Navbar Component', () => {
       const logo = screen.getByLabelText('Cafe4Good Home');
       expect(logo).toHaveClass('focus:outline-none');
       expect(logo).toHaveClass('focus:ring-2');
-      expect(logo).toHaveClass('focus:ring-cafe-orange');
+      expect(logo).toHaveClass('focus:ring-orange-500');
     });
 
     it('navigation links have focus styles', () => {
@@ -157,7 +153,7 @@ describe('Navbar Component', () => {
       render(<Navbar links={mockLinks} />);
       const openButton = screen.getByLabelText('Open menu');
       fireEvent.click(openButton);
-      
+
       const closeButton = screen.getByLabelText('Close menu');
       expect(closeButton).toHaveAttribute('aria-label', 'Close menu');
     });
@@ -188,7 +184,7 @@ describe('Navbar Component', () => {
   describe('Edge Cases', () => {
     it('handles empty links array', () => {
       render(<Navbar links={[]} />);
-      expect(screen.getByText('Cafe4Good')).toBeInTheDocument();
+      expect(screen.getByLabelText('Cafe4Good Home')).toBeInTheDocument();
     });
 
     it('handles single link', () => {

@@ -2,30 +2,32 @@
 
 import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
+import { clsx } from 'clsx';
 
 interface CardProps {
   children: ReactNode;
   className?: string;
-  hover?: boolean; // Enable hover animation
+  hover?: boolean;
 }
 
 export function Card({ children, className = '', hover = false }: CardProps) {
-  const baseStyles = 'bg-white rounded-[var(--radius-card)] overflow-hidden';
-  const shadowStyles = '[box-shadow:var(--shadow-soft)]';
-  const combinedStyles = `${baseStyles} ${shadowStyles} ${className}`;
+  const base = clsx(
+    'bg-white rounded-[var(--radius-card)] overflow-hidden',
+    '[box-shadow:var(--shadow-soft)]',
+    className
+  );
 
   if (hover) {
     return (
       <motion.div
-        className={combinedStyles}
-        initial={{ opacity: 1, scale: 1 }}
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.2, ease: 'easeInOut' }}
+        className={base}
+        whileHover={{ y: -4, boxShadow: 'var(--shadow-strong)' }}
+        transition={{ duration: 0.25, ease: 'easeOut' }}
       >
         {children}
       </motion.div>
     );
   }
 
-  return <div className={combinedStyles}>{children}</div>;
+  return <div className={base}>{children}</div>;
 }
