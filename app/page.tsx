@@ -18,49 +18,110 @@ export default function Home() {
   return (
     <div className="min-h-screen">
 
-      {/* HERO - Full-width image with centered text overlay */}
-      <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/logo.jpeg"
-            alt="Cafe4Good"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-brown-900/50" />
+      {/* HERO - Split: gradient + text left, image mosaic right */}
+      <section className="relative min-h-[90vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+
+        {/* Left: Gradient background with text */}
+        <div
+          className="relative flex items-center py-24 lg:py-0 px-8 sm:px-12 lg:px-16 xl:px-20 order-2 lg:order-1"
+          style={{ background: 'linear-gradient(135deg, #e8472a 0%, #f97316 25%, #d4a017 50%, #4ade80 75%, #0ea5e9 100%)' }}
+        >
+          <div className="max-w-xl">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-[11px] uppercase tracking-[0.35em] text-white/70 mb-6"
+            >
+              Welcome to Cafe4Good
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.1] text-white mb-6"
+            >
+              Leaving You Wanting More
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-white/85 text-lg sm:text-xl mb-10 leading-relaxed"
+            >
+              Fresh, High-Protein, Packed with Flavor.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <Link href="/menu">
+                <Button size="lg" className="bg-white text-brown-900 hover:bg-brown-900 hover:text-white shadow-none rounded-none px-10 py-4 text-sm uppercase tracking-widest font-semibold transition-colors duration-300 border-0">
+                  View Menu
+                </Button>
+              </Link>
+            </motion.div>
+          </div>
         </div>
 
-        <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-[11px] uppercase tracking-[0.35em] text-white/70 mb-6"
-          >
-            Welcome to Cafe4Good
-          </motion.p>
+        {/* Right: Food image mosaic grid */}
+        <div className="relative order-1 lg:order-2 min-h-[50vh] lg:min-h-0">
+          <div className="grid grid-cols-2 grid-rows-2 h-full min-h-[50vh] lg:min-h-0 lg:absolute lg:inset-0">
+            {/* Top-left - tall */}
+            <motion.div
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.1 }}
+              className="relative row-span-2 overflow-hidden"
+            >
+              <Image
+                src="https://picsum.photos/seed/avocado-toast/600/1200"
+                alt="Avocado toast"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-brown-900/10" />
+            </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-8"
-          >
-            Step in and savour the perfect blend of warmth, flavour, and community
-          </motion.h1>
+            {/* Top-right */}
+            <motion.div
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="relative overflow-hidden"
+            >
+              <Image
+                src="https://picsum.photos/seed/acai-bowl/600/600"
+                alt="Acai bowl"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-brown-900/10" />
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <Link href="/menu">
-              <Button size="lg" className="bg-white text-brown-900 hover:bg-orange-500 hover:text-white shadow-none rounded-none px-10 py-4 text-sm uppercase tracking-widest font-semibold transition-colors duration-300">
-                See Our Menu
-              </Button>
-            </Link>
-          </motion.div>
+            {/* Bottom-right */}
+            <motion.div
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="relative overflow-hidden"
+            >
+              <Image
+                src="https://picsum.photos/seed/matcha-latte/600/600"
+                alt="Matcha latte"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-brown-900/10" />
+            </motion.div>
+          </div>
         </div>
       </section>
 

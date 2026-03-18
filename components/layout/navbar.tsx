@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
@@ -66,18 +67,28 @@ export function Navbar({ links = defaultLinks }: NavbarProps) {
             ))}
           </div>
 
-          {/* Centered brand */}
+          {/* Centered brand with logo */}
           <Link
             href="/"
-            className="flex flex-col items-center group focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded-lg px-3 py-1"
+            className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded-lg px-3 py-1"
             aria-label="Cafe4Good Home"
           >
-            <span className="font-display font-bold text-2xl text-brown-900 tracking-tight">
-              Cafe<span className="text-orange-500">4</span>Good
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-brown-400 mt-0.5 hidden sm:block">
-              Fresh &middot; Healthy &middot; Delicious
-            </span>
+            <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-brown-100 group-hover:ring-orange-300 transition-all duration-300">
+              <Image
+                src="/logo.jpeg"
+                alt="Cafe4Good"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-display font-bold text-2xl text-brown-900 tracking-tight leading-none">
+                Cafe<span className="text-orange-500">4</span>Good
+              </span>
+              <span className="text-[9px] uppercase tracking-[0.3em] text-brown-400 mt-0.5 hidden sm:block">
+                Fresh &middot; Healthy &middot; Delicious
+              </span>
+            </div>
           </Link>
 
           {/* Desktop right links */}
