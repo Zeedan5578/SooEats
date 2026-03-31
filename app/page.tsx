@@ -220,7 +220,7 @@ export default function Home() {
                 Whether you&apos;re grabbing a quick lunch, planning a corporate event, or building a weekly meal plan, we&apos;ve got you covered with flavours that make healthy eating feel like a treat.
               </p>
               <Link href="/about">
-                <Button variant="secondary" className="rounded-none border-brown-900 text-brown-900 hover:bg-brown-900 hover:text-white px-8 py-3 text-sm uppercase tracking-widest transition-colors duration-300">
+                <Button variant="secondary" className="rounded-none border-brown-900 text-brown-900 hover:bg-brown-900 hover:text-black px-8 py-3 text-sm uppercase tracking-widest transition-colors duration-300">
                   Our Story <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
