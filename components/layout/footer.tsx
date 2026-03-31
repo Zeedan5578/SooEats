@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone, Mail, Instagram } from 'lucide-react';
 
 export function Footer() {
@@ -25,21 +26,31 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
           {/* Brand column */}
-          <div className="lg:col-span-1">
-            <h3 className="font-logo text-4xl mb-1">
-              <span className="text-white">SOO</span><span className="text-orange-500">EATS</span>
-            </h3>
-            <p className="text-brown-400 text-sm leading-relaxed max-w-xs">
+          <div className="lg:col-span-1 text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
+              <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-brown-700">
+                <Image
+                  src="/logo.jpeg"
+                  alt="SOOEATS"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="font-logo text-4xl">
+                <span className="text-white">SOO</span><span className="text-orange-500">EATS</span>
+              </h3>
+            </div>
+            <p className="text-brown-400 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
               Healthy has never tasted this good!
             </p>
           </div>
 
           {/* Offerings column */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-[11px] uppercase tracking-[0.2em] text-brown-500 font-semibold mb-6">
               Offerings
             </h4>
-            <nav className="flex flex-col gap-3" aria-label="Offerings links">
+            <nav className="flex flex-col items-center md:items-start gap-3" aria-label="Offerings links">
               {offeringsLinks.map((link) => (
                 <Link
                   key={link.label}
@@ -53,11 +64,11 @@ export function Footer() {
           </div>
 
           {/* Others column */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-[11px] uppercase tracking-[0.2em] text-brown-500 font-semibold mb-6">
               Others
             </h4>
-            <nav className="flex flex-col gap-3" aria-label="Other links">
+            <nav className="flex flex-col items-center md:items-start gap-3" aria-label="Other links">
               {othersLinks.map((link) => (
                 <Link
                   key={link.label}
@@ -71,16 +82,16 @@ export function Footer() {
           </div>
 
           {/* Contact column */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-[11px] uppercase tracking-[0.2em] text-brown-500 font-semibold mb-6">
               Contact
             </h4>
             <div className="space-y-4 text-sm text-brown-400">
-              <a href="tel:5551234567" className="flex items-center gap-3 hover:text-orange-400 transition-colors duration-200">
+              <a href="tel:5551234567" className="flex items-center justify-center md:justify-start gap-3 hover:text-orange-400 transition-colors duration-200">
                 <Phone className="w-4 h-4 shrink-0" />
                 (555) 123-4567
               </a>
-              <a href="mailto:hello@cafe4good.com" className="flex items-center gap-3 hover:text-orange-400 transition-colors duration-200">
+              <a href="mailto:hello@cafe4good.com" className="flex items-center justify-center md:justify-start gap-3 hover:text-orange-400 transition-colors duration-200">
                 <Mail className="w-4 h-4 shrink-0" />
                 hello@cafe4good.com
               </a>
@@ -88,7 +99,7 @@ export function Footer() {
                 href="https://instagram.com/Soo__Eats__"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 hover:text-orange-400 transition-colors duration-200"
+                className="flex items-center justify-center md:justify-start gap-3 hover:text-orange-400 transition-colors duration-200"
               >
                 <Instagram className="w-4 h-4 shrink-0" />
                 @Soo__Eats__
