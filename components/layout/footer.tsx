@@ -26,7 +26,7 @@ export function Footer() {
 
           {/* Brand column */}
           <div className="lg:col-span-1">
-            <h3 className="font-display font-bold text-2xl mb-4">
+            <h3 className="font-logo text-4xl mb-1">
               <span className="text-white">SOO</span><span className="text-orange-500">EATS</span>
             </h3>
             <p className="text-brown-400 text-sm leading-relaxed max-w-xs">

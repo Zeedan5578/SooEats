@@ -18,10 +18,10 @@ export interface NavbarProps {
 }
 
 const defaultLinks: NavLink[] = [
+  { label: 'About',     href: '/about' },
   { label: 'Menu',      href: '/menu' },
   { label: 'Meal Plan', href: '/meal-plan' },
   { label: 'Nutrition', href: '/nutrition' },
-  { label: 'About',     href: '/about' },
   { label: 'Contact',   href: '/contact' },
 ];
 
@@ -39,8 +39,8 @@ export function Navbar({ links = defaultLinks }: NavbarProps) {
   const toggleMobileMenu = () => setIsMobileMenuOpen((v) => !v);
   const closeMobileMenu  = () => setIsMobileMenuOpen(false);
 
-  const leftLinks = links.slice(0, Math.ceil(links.length / 2));
-  const rightLinks = links.slice(Math.ceil(links.length / 2));
+  const leftLinks = links.slice(0, Math.ceil(links.length - 1));
+  const rightLinks = links.slice(4);
 
   return (
     <nav
@@ -82,10 +82,10 @@ export function Navbar({ links = defaultLinks }: NavbarProps) {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-2xl tracking-tight leading-none">
+              <span className="font-logo text-[26px] tracking-wide leading-none">
                 <span className="text-brown-900">SOO</span><span className="text-orange-500">EATS</span>
               </span>
-              <span className="text-[9px] uppercase tracking-[0.3em] text-brown-400 mt-0.5 hidden sm:block">
+              <span className="text-[9px] uppercase tracking-[0.3em] text-brown-400 font-semibold mt-0.5 hidden sm:block">
                 Healthy Has Never Tasted This Good
               </span>
             </div>

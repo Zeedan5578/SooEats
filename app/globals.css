@@ -118,6 +118,9 @@ body {
 .font-display {
   font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
 }
+.font-logo {
+  font-family: var(--font-logo), 'Irish Grover', cursive;
+}
 
 /* Gradient helpers */
 .gradient-orange {
