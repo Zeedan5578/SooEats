@@ -1,30 +1,20 @@
 import Link from 'next/link';
+import { Phone, Mail, Instagram } from 'lucide-react';
 
-export interface FooterLink {
-  label: string;
-  href: string;
-}
-
-export interface FooterProps {
-  links?: FooterLink[];
-}
-
-const defaultLinks: FooterLink[] = [
-  { label: 'Home',      href: '/' },
-  { label: 'Menu',      href: '/menu' },
-  { label: 'Catering',  href: '/catering' },
-  { label: 'Meal Plan', href: '/meal-plan' },
-  { label: 'SooEats',   href: '/soo-eats' },
-  { label: 'Nutrition', href: '/nutrition' },
-  { label: 'About',     href: '/about' },
-  { label: 'Contact',   href: '/contact' },
-];
-
-export function Footer({ links = defaultLinks }: FooterProps) {
+export function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const serviceLinks = links.slice(0, 4);
-  const companyLinks = links.slice(4);
+  const offeringsLinks = [
+    { label: 'Menu',      href: '/menu' },
+    { label: 'Meal Plan', href: '/meal-plan' },
+    { label: 'Catering',  href: '#' },
+  ];
+
+  const othersLinks = [
+    { label: 'Nutrition', href: '/nutrition' },
+    { label: 'About',     href: '/about' },
+    { label: 'Contact',   href: '/contact' },
+  ];
 
   return (
     <footer className="bg-brown-900 text-brown-300">
@@ -37,22 +27,22 @@ export function Footer({ links = defaultLinks }: FooterProps) {
           {/* Brand column */}
           <div className="lg:col-span-1">
             <h3 className="font-display font-bold text-2xl text-white mb-4">
-              Cafe<span className="text-orange-500">4</span>Good
+              SOOEATS
             </h3>
             <p className="text-brown-400 text-sm leading-relaxed max-w-xs">
-              Step into Cafe4Good and savour the perfect blend of warmth, flavour, and community.
+              Healthy has never tasted this good!
             </p>
           </div>
 
-          {/* Service column */}
+          {/* Offerings column */}
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.2em] text-brown-500 font-semibold mb-6">
-              Service
+              Offerings
             </h4>
-            <nav className="flex flex-col gap-3" aria-label="Service links">
-              {serviceLinks.map((link) => (
+            <nav className="flex flex-col gap-3" aria-label="Offerings links">
+              {offeringsLinks.map((link) => (
                 <Link
-                  key={link.href}
+                  key={link.label}
                   href={link.href}
                   className="text-sm text-brown-400 hover:text-orange-400 transition-colors duration-200 w-fit"
                 >
@@ -62,15 +52,15 @@ export function Footer({ links = defaultLinks }: FooterProps) {
             </nav>
           </div>
 
-          {/* Company column */}
+          {/* Others column */}
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.2em] text-brown-500 font-semibold mb-6">
-              Company
+              Others
             </h4>
-            <nav className="flex flex-col gap-3" aria-label="Company links">
-              {companyLinks.map((link) => (
+            <nav className="flex flex-col gap-3" aria-label="Other links">
+              {othersLinks.map((link) => (
                 <Link
-                  key={link.href}
+                  key={link.label}
                   href={link.href}
                   className="text-sm text-brown-400 hover:text-orange-400 transition-colors duration-200 w-fit"
                 >
@@ -83,18 +73,25 @@ export function Footer({ links = defaultLinks }: FooterProps) {
           {/* Contact column */}
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.2em] text-brown-500 font-semibold mb-6">
-              Get In Touch
+              Contact
             </h4>
-            <div className="space-y-3 text-sm text-brown-400">
-              <p>(555) 123-4567</p>
-              <p>hello@cafe4good.com</p>
+            <div className="space-y-4 text-sm text-brown-400">
+              <a href="tel:5551234567" className="flex items-center gap-3 hover:text-orange-400 transition-colors duration-200">
+                <Phone className="w-4 h-4 shrink-0" />
+                (555) 123-4567
+              </a>
+              <a href="mailto:hello@cafe4good.com" className="flex items-center gap-3 hover:text-orange-400 transition-colors duration-200">
+                <Mail className="w-4 h-4 shrink-0" />
+                hello@cafe4good.com
+              </a>
               <a
-                href="https://instagram.com/cafe4good"
+                href="https://instagram.com/Soo__Eats__"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block hover:text-orange-400 transition-colors duration-200"
+                className="flex items-center gap-3 hover:text-orange-400 transition-colors duration-200"
               >
-                @cafe4good
+                <Instagram className="w-4 h-4 shrink-0" />
+                @Soo__Eats__
               </a>
             </div>
           </div>
@@ -103,10 +100,7 @@ export function Footer({ links = defaultLinks }: FooterProps) {
         {/* Bottom bar */}
         <div className="border-t border-brown-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-brown-600 uppercase tracking-widest">
-            &copy; {currentYear} Cafe4Good. All rights reserved.
-          </p>
-          <p className="text-xs text-brown-700">
-            Good food for good people.
+            &copy; {currentYear} SOOEATS. All rights reserved.
           </p>
         </div>
       </div>

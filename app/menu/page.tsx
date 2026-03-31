@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { ShoppingBag } from 'lucide-react';
 import { menuItems } from '@/lib/data/menu';
+import { useCart } from '@/lib/cart-context';
 
-const categories = ['breakfast', 'lunch', 'drinks'] as const;
+const categories = ['breakfast', 'lunch', 'drinks', 'dessert'] as const;
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -14,6 +16,8 @@ const fadeUp = {
 };
 
 export default function MenuPage() {
+  const { addItem } = useCart();
+
   return (
     <main>
       {/* Hero - Full-width image */}
@@ -51,7 +55,7 @@ export default function MenuPage() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-white/60 text-lg mt-4 max-w-lg mx-auto"
           >
-            Seasonal ingredients, bold flavours, crafted fresh every single day.
+            Healthy has never tasted this good
           </motion.p>
         </div>
       </section>
@@ -87,6 +91,13 @@ export default function MenuPage() {
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
+                      <button
+                        onClick={() => addItem(item)}
+                        className="absolute bottom-3 right-3 w-10 h-10 bg-white/90 hover:bg-orange-500 hover:text-white text-brown-900 rounded-full flex items-center justify-center shadow-md transition-colors opacity-0 group-hover:opacity-100"
+                        aria-label={`Add ${item.name} to cart`}
+                      >
+                        <ShoppingBag className="w-4 h-4" />
+                      </button>
                     </div>
                     <div className="flex justify-between items-start gap-4">
                       <div>
@@ -101,13 +112,25 @@ export default function MenuPage() {
                         ${item.price.toFixed(2)}
                       </span>
                     </div>
-                    {/* Macro row */}
+                    {/* Serving & Macro row */}
                     <div className="flex gap-6 mt-3 text-xs text-brown-400">
-                      <span>{item.macros.calories} cal</span>
-                      <span>{item.macros.protein}g protein</span>
-                      <span>{item.macros.carbs}g carbs</span>
-                      <span>{item.macros.fats}g fats</span>
+                      <span className="font-medium">{item.serving}</span>
+                      {item.macros.calories > 0 && (
+                        <>
+                          <span>{item.macros.calories} cal</span>
+                          <span>{item.macros.protein}g protein</span>
+                          <span>{item.macros.carbs}g carbs</span>
+                          <span>{item.macros.fats}g fats</span>
+                        </>
+                      )}
                     </div>
+                    {/* Add to cart button (visible on mobile) */}
+                    <button
+                      onClick={() => addItem(item)}
+                      className="mt-4 w-full py-2.5 text-xs uppercase tracking-widest font-semibold border border-brown-200 text-brown-900 hover:bg-brown-900 hover:text-white transition-colors lg:hidden"
+                    >
+                      Add to Cart
+                    </button>
                   </motion.div>
                 ))}
               </div>

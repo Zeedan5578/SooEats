@@ -98,26 +98,33 @@ export default function NutritionPage() {
                     <p className="text-[10px] uppercase tracking-widest text-orange-500 mb-1">{item.category}</p>
                     <h3 className="font-display font-bold text-lg text-brown-900">{item.name}</h3>
                     <p className="text-brown-400 text-sm mt-1">{item.description}</p>
+                    <p className="text-brown-500 text-xs mt-1 font-medium">Serving: {item.serving}</p>
                   </div>
 
                   {/* Macro values */}
                   <div className="flex gap-6 sm:gap-8 shrink-0">
-                    <div className="text-center">
-                      <p className="font-bold text-orange-500 text-lg">{item.macros.calories}</p>
-                      <p className="text-[10px] uppercase tracking-widest text-brown-400">Cal</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="font-bold text-green-600 text-lg">{item.macros.protein}g</p>
-                      <p className="text-[10px] uppercase tracking-widest text-brown-400">Protein</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="font-bold text-brown-600 text-lg">{item.macros.carbs}g</p>
-                      <p className="text-[10px] uppercase tracking-widest text-brown-400">Carbs</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="font-bold text-orange-400 text-lg">{item.macros.fats}g</p>
-                      <p className="text-[10px] uppercase tracking-widest text-brown-400">Fats</p>
-                    </div>
+                    {item.macros.calories > 0 ? (
+                      <>
+                        <div className="text-center">
+                          <p className="font-bold text-orange-500 text-lg">{item.macros.calories}</p>
+                          <p className="text-[10px] uppercase tracking-widest text-brown-400">Cal</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="font-bold text-green-600 text-lg">{item.macros.protein}g</p>
+                          <p className="text-[10px] uppercase tracking-widest text-brown-400">Protein</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="font-bold text-brown-600 text-lg">{item.macros.carbs}g</p>
+                          <p className="text-[10px] uppercase tracking-widest text-brown-400">Carbs</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="font-bold text-orange-400 text-lg">{item.macros.fats}g</p>
+                          <p className="text-[10px] uppercase tracking-widest text-brown-400">Fats</p>
+                        </div>
+                      </>
+                    ) : (
+                      <p className="text-brown-400 text-sm italic">Coming soon</p>
+                    )}
                   </div>
                 </div>
               </motion.div>

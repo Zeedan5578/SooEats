@@ -34,7 +34,7 @@ const timeline = [
   {
     year: '2024',
     title: 'Growing Community',
-    desc: 'With catering, partnerships, and a loyal community, Cafe4Good expanded its reach and continued its mission.',
+    desc: 'With catering, partnerships, and a loyal community, SOOEATS expanded its reach and continued its mission.',
     images: [
       'https://picsum.photos/seed/story-2024a/600/400',
       'https://picsum.photos/seed/story-2024b/600/400',

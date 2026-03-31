@@ -11,7 +11,7 @@ export function ChatBubble({ message, sender, timestamp }: ChatBubbleProps) {
     <div className={`flex ${isSystem ? 'justify-start' : 'justify-end'} mb-4`}>
       {isSystem && (
         <div className="w-8 h-8 rounded-full gradient-orange flex items-center justify-center text-white text-xs font-bold mr-2 flex-shrink-0 self-end mb-1">
-          C4
+          SE
         </div>
       )}
       <div

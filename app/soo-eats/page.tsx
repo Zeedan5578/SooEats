@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { collaborationProducts } from '@/lib/data/menu';
+import { menuItems } from '@/lib/data/menu';
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -10,6 +10,8 @@ const fadeUp = {
   viewport: { once: true },
   transition: { duration: 0.7, ease: 'easeOut' as const },
 };
+
+const featured = menuItems.filter((item) => item.macros.calories > 0).slice(0, 4);
 
 export default function SooEatsPage() {
   return (
@@ -19,7 +21,7 @@ export default function SooEatsPage() {
         <div className="absolute inset-0">
           <Image
             src="https://picsum.photos/seed/soo-eats-hero/1600/800"
-            alt="SooEats collaboration"
+            alt="SOOEATS Nutrition"
             fill
             className="object-cover"
             priority
@@ -28,13 +30,13 @@ export default function SooEatsPage() {
         </div>
         <div className="relative z-10 text-center text-white px-4">
           <p className="text-[11px] uppercase tracking-[0.35em] text-orange-400 mb-4">
-            Exclusive Partnership
+            Our Products
           </p>
           <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl">
-            SooEats <span className="text-orange-400">&times;</span> Cafe4Good
+            SOOEATS Nutrition
           </h1>
           <p className="text-white/60 text-lg mt-4 max-w-lg mx-auto">
-            Exclusive, high-quality products that align with our commitment to fresh, healthy, and sustainable food.
+            High-protein, healthy products crafted with care — because healthy has never tasted this good.
           </p>
         </div>
       </section>
@@ -48,14 +50,14 @@ export default function SooEatsPage() {
                 The story
               </p>
               <h2 className="font-display font-bold text-3xl sm:text-4xl text-brown-900 leading-tight mb-8">
-                A partnership built on shared values
+                Built on a passion for healthy food
               </h2>
               <div className="section-divider mb-8" />
               <p className="text-brown-500 text-lg leading-relaxed mb-6">
-                We&apos;ve partnered with SooEats to bring you a curated selection of products that reflect our commitment to quality, sustainability, and flavour.
+                SOOEATS was born from a simple belief: healthy food should taste incredible. Every product is crafted with high-quality, nutrient-dense ingredients.
               </p>
               <p className="text-brown-400 leading-relaxed">
-                Every product in this collaboration is crafted with the same care and intention we bring to our kitchen. From organic coffee to artisan granola, these are products we&apos;re proud to put our name on.
+                From protein-packed meals to guilt-free desserts and drinks, every item is designed to fuel your body without compromising on flavour.
               </p>
             </motion.div>
 
@@ -63,7 +65,7 @@ export default function SooEatsPage() {
               <div className="relative aspect-square w-full overflow-hidden">
                 <Image
                   src="https://picsum.photos/seed/partnership/800/800"
-                  alt="Partnership"
+                  alt="SOOEATS products"
                   fill
                   className="object-cover"
                 />
@@ -77,18 +79,16 @@ export default function SooEatsPage() {
               Available now
             </p>
             <h2 className="font-display font-bold text-3xl sm:text-4xl text-brown-900">
-              Collaboration Products
+              Our Products
             </h2>
           </motion.div>
 
           <div className="space-y-24">
-            {collaborationProducts.map((product, i) => (
+            {featured.map((product, i) => (
               <motion.div
                 key={product.id}
                 {...fadeUp}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
-                  i % 2 === 1 ? '' : ''
-                }`}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
               >
                 <div className={`relative aspect-[4/3] w-full overflow-hidden ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
                   <Image
@@ -100,13 +100,18 @@ export default function SooEatsPage() {
                 </div>
                 <div className={i % 2 === 1 ? 'lg:order-1' : ''}>
                   <span className="text-[11px] uppercase tracking-[0.35em] text-orange-500 mb-3 block">
-                    Product {String(i + 1).padStart(2, '0')}
+                    {product.category}
                   </span>
                   <h3 className="font-display font-bold text-2xl sm:text-3xl text-brown-900 mb-4">
                     {product.name}
                   </h3>
                   <div className="section-divider mb-6" />
-                  <p className="text-brown-500 leading-relaxed">{product.description}</p>
+                  <p className="text-brown-500 leading-relaxed mb-4">{product.description}</p>
+                  <div className="flex gap-6 text-sm text-brown-400">
+                    <span>{product.serving}</span>
+                    <span>{product.macros.calories} cal</span>
+                    <span>{product.macros.protein}g protein</span>
+                  </div>
                 </div>
               </motion.div>
             ))}

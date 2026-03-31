@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingBag } from 'lucide-react';
 import { clsx } from 'clsx';
+import { useCart } from '@/lib/cart-context';
 
 export interface NavLink {
   label: string;
@@ -17,18 +18,17 @@ export interface NavbarProps {
 }
 
 const defaultLinks: NavLink[] = [
-  { label: 'Menu',       href: '/menu' },
-  { label: 'Catering',   href: '/catering' },
-  { label: 'Meal Plan',  href: '/meal-plan' },
-  { label: 'SooEats',    href: '/soo-eats' },
-  { label: 'Nutrition',  href: '/nutrition' },
-  { label: 'About',      href: '/about' },
-  { label: 'Contact',    href: '/contact' },
+  { label: 'Menu',      href: '/menu' },
+  { label: 'Meal Plan', href: '/meal-plan' },
+  { label: 'Nutrition', href: '/nutrition' },
+  { label: 'About',     href: '/about' },
+  { label: 'Contact',   href: '/contact' },
 ];
 
 export function Navbar({ links = defaultLinks }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { totalItems, setIsCartOpen } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -71,27 +71,27 @@ export function Navbar({ links = defaultLinks }: NavbarProps) {
           <Link
             href="/"
             className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded-lg px-3 py-1"
-            aria-label="Cafe4Good Home"
+            aria-label="SOOEATS Home"
           >
             <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-brown-100 group-hover:ring-orange-300 transition-all duration-300">
               <Image
                 src="/logo.jpeg"
-                alt="Cafe4Good"
+                alt="SOOEATS"
                 fill
                 className="object-cover"
               />
             </div>
             <div className="flex flex-col">
               <span className="font-display font-bold text-2xl text-brown-900 tracking-tight leading-none">
-                Cafe<span className="text-orange-500">4</span>Good
+                SOOEATS
               </span>
               <span className="text-[9px] uppercase tracking-[0.3em] text-brown-400 mt-0.5 hidden sm:block">
-                Fresh &middot; Healthy &middot; Delicious
+                Healthy Has Never Tasted This Good
               </span>
             </div>
           </Link>
 
-          {/* Desktop right links */}
+          {/* Desktop right links + cart */}
           <div className="hidden lg:flex items-center gap-8 flex-1 justify-end">
             {rightLinks.map((link) => (
               <Link
@@ -102,6 +102,18 @@ export function Navbar({ links = defaultLinks }: NavbarProps) {
                 {link.label}
               </Link>
             ))}
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative ml-2 p-2 text-brown-700 hover:text-orange-600 transition-colors"
+              aria-label="Open cart"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-orange-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
             <Link
               href="/menu"
               className="ml-2 px-6 py-2.5 text-[13px] uppercase tracking-widest text-white bg-brown-900 hover:bg-orange-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
@@ -110,18 +122,32 @@ export function Navbar({ links = defaultLinks }: NavbarProps) {
             </Link>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={toggleMobileMenu}
-            className="lg:hidden p-2 text-brown-700 hover:text-orange-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded"
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isMobileMenuOpen}
-          >
-            {isMobileMenuOpen
-              ? <X className="h-6 w-6" aria-hidden="true" />
-              : <Menu className="h-6 w-6" aria-hidden="true" />
-            }
-          </button>
+          {/* Mobile: cart + toggle */}
+          <div className="flex lg:hidden items-center gap-2">
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 text-brown-700 hover:text-orange-600 transition-colors"
+              aria-label="Open cart"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-orange-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={toggleMobileMenu}
+              className="p-2 text-brown-700 hover:text-orange-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded"
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen
+                ? <X className="h-6 w-6" aria-hidden="true" />
+                : <Menu className="h-6 w-6" aria-hidden="true" />
+              }
+            </button>
+          </div>
         </div>
       </div>
 

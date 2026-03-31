@@ -27,7 +27,7 @@ const cards = [
   },
   {
     title: 'Our Story',
-    description: "Find out how Cafe4Good came to be — and where we're headed.",
+    description: "Find out how SOOEATS came to be — and where we're headed.",
     href: '/about/story',
     image: 'https://picsum.photos/seed/story-card/600/800',
   },
@@ -41,7 +41,7 @@ export default function AboutPage() {
         <div className="absolute inset-0">
           <Image
             src="https://picsum.photos/seed/cafe-team/1600/900"
-            alt="Cafe4Good team"
+            alt="SOOEATS team"
             fill
             className="object-cover"
             priority
@@ -53,7 +53,7 @@ export default function AboutPage() {
             Who we are
           </p>
           <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl">
-            About Cafe4Good
+            About SOOEATS
           </h1>
           <p className="text-white/60 text-lg mt-4 max-w-lg mx-auto">
             A team of food lovers on a mission to make healthy eating delicious and accessible.
@@ -61,25 +61,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Intro text */}
-      <section className="py-28">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <motion.div {...fadeUp}>
-            <p className="text-[11px] uppercase tracking-[0.35em] text-orange-500 mb-6">
-              Our journey
-            </p>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl text-brown-900 leading-tight mb-8">
-              Come join us as our story continues to grow
-            </h2>
-            <div className="section-divider mx-auto mb-8" />
-            <p className="text-brown-500 text-lg leading-relaxed">
-              What started as a small passion project has grown into a community of food lovers who believe that what you eat matters. We create havens where people can meet, rest, and enjoy nourishing meals.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* About cards - three columns with tall images */}
+      {/* About cards - three columns with tall images (no "our journey" intro section) */}
       <section className="bg-brown-50 py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

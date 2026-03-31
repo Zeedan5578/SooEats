@@ -18,10 +18,10 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const contactInfo = [
-  { Icon: Phone,     label: 'Phone',     value: '(555) 123-4567',      href: 'tel:5551234567' },
-  { Icon: Mail,      label: 'Email',     value: 'hello@cafe4good.com', href: 'mailto:hello@cafe4good.com' },
-  { Icon: Instagram, label: 'Instagram', value: '@cafe4good',          href: 'https://instagram.com/cafe4good' },
-  { Icon: MapPin,    label: 'Location',  value: 'Coming Soon',         href: '#' },
+  { Icon: Phone,     label: 'Phone',     value: '(555) 123-4567',        href: 'tel:5551234567' },
+  { Icon: Mail,      label: 'Email',     value: 'hello@cafe4good.com',   href: 'mailto:hello@cafe4good.com' },
+  { Icon: Instagram, label: 'Instagram', value: '@Soo__Eats__',          href: 'https://instagram.com/Soo__Eats__' },
+  { Icon: MapPin,    label: 'Location',  value: 'Coming Soon',           href: '#' },
 ];
 
 const fadeUp = {
@@ -83,7 +83,7 @@ export default function ContactPage() {
                 Get in touch
               </p>
               <h2 className="font-display font-bold text-3xl sm:text-4xl text-brown-900 leading-tight mb-8">
-                Interested in working together?
+                We&apos;d love to hear from you
               </h2>
               <div className="section-divider mb-8" />
               <p className="text-brown-500 leading-relaxed mb-12">
