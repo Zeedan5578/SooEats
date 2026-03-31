@@ -82,8 +82,8 @@ export function Navbar({ links = defaultLinks }: NavbarProps) {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-2xl text-brown-900 tracking-tight leading-none">
-                SOOEATS
+              <span className="font-display font-bold text-2xl tracking-tight leading-none">
+                <span className="text-brown-900">SOO</span><span className="text-orange-500">EATS</span>
               </span>
               <span className="text-[9px] uppercase tracking-[0.3em] text-brown-400 mt-0.5 hidden sm:block">
                 Healthy Has Never Tasted This Good

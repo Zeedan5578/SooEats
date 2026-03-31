@@ -26,8 +26,8 @@ export function Footer() {
 
           {/* Brand column */}
           <div className="lg:col-span-1">
-            <h3 className="font-display font-bold text-2xl text-white mb-4">
-              SOOEATS
+            <h3 className="font-display font-bold text-2xl mb-4">
+              <span className="text-white">SOO</span><span className="text-orange-500">EATS</span>
             </h3>
             <p className="text-brown-400 text-sm leading-relaxed max-w-xs">
               Healthy has never tasted this good!
