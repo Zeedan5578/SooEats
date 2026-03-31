@@ -162,7 +162,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeUp} className="text-center mt-12">
             <Link href="/menu">
-              <Button variant="secondary" className="rounded-none border-brown-900 text-brown-900 hover:bg-brown-900 hover:text-white px-10 py-3 text-sm uppercase tracking-widest transition-colors duration-300">
+              <Button variant="secondary" className="rounded-none border-brown-900 text-brown-900 hover:bg-brown-900 hover:text-black px-10 py-3 text-sm uppercase tracking-widest transition-colors duration-300">
                 View Full Menu <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
