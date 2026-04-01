@@ -82,10 +82,10 @@ export function Navbar({ links = defaultLinks }: NavbarProps) {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-logo text-[26px] tracking-wide leading-none">
+              <span className="font-logo text-[20px] sm:text-[26px] tracking-wide leading-none">
                 <span className="text-brown-900">SOO</span><span className="text-orange-500">EATS</span>
               </span>
-              <span className="text-[9px] uppercase tracking-[0.3em] text-brown-400 font-semibold mt-0.5 hidden sm:block">
+              <span className="text-[7px] sm:text-[9px] uppercase tracking-[0.15em] sm:tracking-[0.3em] text-brown-400 font-semibold mt-1">
                 Healthy Has Never Tasted This Good
               </span>
             </div>
