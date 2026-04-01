@@ -107,7 +107,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-[11px] uppercase tracking-[0.35em] text-white/70 mb-6"
+            className="text-[12px] uppercase tracking-[0.35em] text-white/70 mb-6"
           >
             Welcome to SOOEATS
           </motion.p>

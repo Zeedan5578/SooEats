@@ -24,7 +24,7 @@ const plans = [
     image: 'https://picsum.photos/seed/protein-plan/600/800',
   },
   {
-    title: 'Plant-Based',
+    title: 'Low Calories',
     desc: 'Vibrant, satisfying plant-forward meals packed with flavour.',
     image: 'https://picsum.photos/seed/plant-plan/600/800',
   },
