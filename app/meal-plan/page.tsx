@@ -25,7 +25,7 @@ const plans = [
   },
   {
     title: 'Low Calories',
-    desc: 'Vibrant, satisfying plant-forward meals packed with flavour.',
+    desc: 'Light, nutrient-dense meals under 500 calories that keep you satisfied.',
     image: 'https://picsum.photos/seed/plant-plan/600/800',
   },
   {
