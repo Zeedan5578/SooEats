@@ -50,7 +50,7 @@ export default function VisionPage() {
             </h2>
             <div className="section-divider mb-8" />
             <p className="text-brown-500 text-lg leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Our vision is to reshape the way people experience everyday food by making healthy, balanced meals accessible, convenient, and effortless.
             </p>
           </motion.div>
 
@@ -77,10 +77,13 @@ export default function VisionPage() {
           {/* Text block */}
           <motion.div {...fadeUp} className="max-w-3xl mx-auto text-center">
             <p className="text-brown-500 text-lg leading-relaxed mb-6">
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              SOO EATS aims to grow beyond a single brand into a trusted platform where individuals can easily discover and access better meal options without compromise.
+            </p>
+            <p className="text-brown-400 leading-relaxed mb-6">
+              As we expand, we envision building a connected network of local food businesses that share our commitment to quality and nutrition — creating a system where healthier choices are not only available, but the easiest option.
             </p>
             <p className="text-brown-400 leading-relaxed">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+              Through strong partnerships and a community-driven approach, we strive to support local businesses while helping people build better, more sustainable eating habits every day.
             </p>
           </motion.div>
         </div>

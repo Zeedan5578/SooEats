@@ -16,7 +16,7 @@ const timeline = [
   {
     year: '2020',
     title: 'The Seed',
-    desc: 'What started as a small pop-up kitchen became a community of food lovers who believed that healthy eating could be delicious.',
+    desc: 'What started as an idea quickly turned into action through small pop-up experiences. These early moments were not just about serving food, but about understanding what people truly wanted—meals that are convenient, healthy, and still satisfying.',
     images: [
       'https://picsum.photos/seed/story-2020a/600/400',
       'https://picsum.photos/seed/story-2020b/600/400',
@@ -24,8 +24,8 @@ const timeline = [
   },
   {
     year: '2022',
-    title: 'Finding Our Space',
-    desc: 'We found an old space and transformed it into a warm, inviting cafe where people could gather and enjoy nourishing meals.',
+    title: 'Finding Our Footing',
+    desc: 'Through these pop-ups and community interactions, SOO EATS began shaping its identity. Each event became an opportunity to refine recipes, improve operations, and build genuine connections with people who believed in the idea.',
     images: [
       'https://picsum.photos/seed/story-2022a/600/400',
       'https://picsum.photos/seed/story-2022b/600/400',
@@ -33,8 +33,8 @@ const timeline = [
   },
   {
     year: '2024',
-    title: 'Growing Community',
-    desc: 'With catering, partnerships, and a loyal community, SOOEATS expanded its reach and continued its mission.',
+    title: 'Growing Forward',
+    desc: 'Today, SOO EATS is evolving into more than just a food concept. With a focus on community, collaboration, and accessibility, we are building a foundation for something bigger—creating a system where healthier food options are easier to find, trust, and enjoy.',
     images: [
       'https://picsum.photos/seed/story-2024a/600/400',
       'https://picsum.photos/seed/story-2024b/600/400',
@@ -79,7 +79,7 @@ export default function StoryPage() {
             </h2>
             <div className="section-divider mb-8" />
             <p className="text-brown-500 text-lg leading-relaxed">
-              Every great story starts with a simple idea. Ours was a belief that food should nourish both body and soul, and that healthy eating doesn&apos;t have to mean compromising on flavour.
+              Every great story starts with a simple idea. Ours began with a belief that food should nourish both body and soul—and that healthy eating should never come at the cost of flavor or comfort.
             </p>
           </motion.div>
 

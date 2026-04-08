@@ -51,10 +51,10 @@ export default function MissionPage() {
               </h2>
               <div className="section-divider mb-8" />
               <p className="text-brown-500 text-lg leading-relaxed mb-6">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Our mission is to make healthy, high-protein meals simple, affordable, and satisfying. Whether you’re a student, a working professional, or constantly on the go, we create food that fuels your body without sacrificing taste or convenience.
               </p>
               <p className="text-brown-400 leading-relaxed">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Every item we serve is thoughtfully crafted to deliver balanced nutrition while still feeling enjoyable and comforting.
               </p>
             </div>
             <div className="relative aspect-[4/5] w-full overflow-hidden">
@@ -79,10 +79,10 @@ export default function MissionPage() {
             </div>
             <div>
               <p className="text-brown-500 text-lg leading-relaxed mb-6">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                At SOO EATS, we’re here to challenge traditional fast food by offering better alternatives that support long-term well-being.
               </p>
               <p className="text-brown-400 leading-relaxed">
-                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                Our goal is to make healthier eating easy, accessible, and something people can stick to — every single day.
               </p>
             </div>
           </motion.div>

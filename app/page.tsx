@@ -214,7 +214,7 @@ export default function Home() {
               </h2>
               <div className="section-divider mb-8" />
               <p className="text-brown-500 text-lg leading-relaxed mb-6">
-                Every dish at SOOEATS starts with a simple question: what would genuinely nourish someone today? We source seasonal produce, work with local farmers, and cook everything fresh.
+                Every dish at SOOEATS starts with a simple question: what would genuinely nourish someone today?
               </p>
               <p className="text-brown-400 leading-relaxed mb-10">
                 Whether you&apos;re grabbing a quick lunch, planning a corporate event, or building a weekly meal plan, we&apos;ve got you covered with flavours that make healthy eating feel like a treat.
