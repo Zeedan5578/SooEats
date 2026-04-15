@@ -174,6 +174,14 @@ export default function Home() {
       <section className="py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeUp} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="relative aspect-[4/3] w-full overflow-hidden">
+              <Image
+                src="https://picsum.photos/seed/meal-prep/800/600"
+                alt="Meal plans"
+                fill
+                className="object-cover"
+              />
+            </div>
             <div>
               <p className="text-[11px] uppercase tracking-[0.35em] text-green-600 mb-4">Coming Soon</p>
               <h3 className="font-display font-bold text-2xl sm:text-3xl text-brown-900 mb-4">
@@ -188,14 +196,6 @@ export default function Home() {
                   Join Waitlist <ArrowRight className="w-4 h-4" />
                 </span>
               </Link>
-            </div>
-            <div className="relative aspect-[4/3] w-full overflow-hidden">
-              <Image
-                src="https://picsum.photos/seed/meal-prep/800/600"
-                alt="Meal plans"
-                fill
-                className="object-cover"
-              />
             </div>
           </motion.div>
         </div>
