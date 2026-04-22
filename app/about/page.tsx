@@ -40,7 +40,7 @@ export default function AboutPage() {
       <section className="relative h-[60vh] min-h-[450px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://picsum.photos/seed/cafe-team/1600/900"
+            src="/about-us.png"
             alt="SOOEATS team"
             fill
             className="object-cover"

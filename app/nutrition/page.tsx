@@ -18,7 +18,7 @@ export default function NutritionPage() {
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://picsum.photos/seed/nutrition-hero/1600/800"
+            src="/nutrition.png"
             alt="Nutrition information"
             fill
             className="object-cover"

@@ -24,7 +24,7 @@ export default function MenuPage() {
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://picsum.photos/seed/menu-hero/1600/800"
+            src="/menu.png"
             alt="Our menu"
             fill
             className="object-cover"

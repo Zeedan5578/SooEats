@@ -171,12 +171,12 @@ export default function Home() {
       </section>
 
       {/* MEAL PLANS */}
-      <section className="py-28">
+      <section className="py-25">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeUp} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="relative aspect-[4/3] w-full overflow-hidden">
               <Image
-                src="https://picsum.photos/seed/meal-prep/800/600"
+                src="/meal-plan.png"
                 alt="Meal plans"
                 fill
                 className="object-cover"
@@ -232,7 +232,7 @@ export default function Home() {
               className="relative aspect-[4/5] w-full"
             >
               <Image
-                src="https://picsum.photos/seed/cafe-food/800/1000"
+                src="/about-us.png"
                 alt="Fresh food"
                 fill
                 className="object-cover"
