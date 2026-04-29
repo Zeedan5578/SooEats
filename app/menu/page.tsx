@@ -88,16 +88,26 @@ export default function MenuPage() {
                         src={item.image}
                         alt={item.name}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        className={`object-cover transition-transform duration-700 ${
+                          item.macros.calories === 0 ? 'blur-md' : 'group-hover:scale-105'
+                        }`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
-                      <button
-                        onClick={() => addItem(item)}
-                        className="absolute bottom-3 right-3 w-10 h-10 bg-white/90 hover:bg-orange-500 hover:text-white text-brown-900 rounded-full flex items-center justify-center shadow-md transition-colors opacity-0 group-hover:opacity-100"
-                        aria-label={`Add ${item.name} to cart`}
-                      >
-                        <ShoppingBag className="w-4 h-4" />
-                      </button>
+                      {item.macros.calories === 0 ? (
+                        <div className="absolute inset-0 bg-brown-900/20 flex items-center justify-center">
+                          <span className="px-4 py-2 bg-white/90 text-brown-900 text-[10px] uppercase tracking-[0.2em] font-bold">
+                            Coming Soon
+                          </span>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => addItem(item)}
+                          className="absolute bottom-3 right-3 w-10 h-10 bg-white/90 hover:bg-orange-500 hover:text-white text-brown-900 rounded-full flex items-center justify-center shadow-md transition-colors opacity-0 group-hover:opacity-100"
+                          aria-label={`Add ${item.name} to cart`}
+                        >
+                          <ShoppingBag className="w-4 h-4" />
+                        </button>
+                      )}
                     </div>
                     <div className="flex justify-between items-start gap-4">
                       <div>
@@ -125,12 +135,14 @@ export default function MenuPage() {
                       )}
                     </div>
                     {/* Add to cart button (visible on mobile) */}
-                    <button
-                      onClick={() => addItem(item)}
-                      className="mt-4 w-full py-2.5 text-xs uppercase tracking-widest font-semibold border border-brown-200 text-brown-900 hover:bg-brown-900 hover:text-white transition-colors lg:hidden"
-                    >
-                      Add to Cart
-                    </button>
+                    {item.macros.calories > 0 && (
+                      <button
+                        onClick={() => addItem(item)}
+                        className="mt-4 w-full py-2.5 text-xs uppercase tracking-widest font-semibold border border-brown-200 text-brown-900 hover:bg-brown-900 hover:text-white transition-colors lg:hidden"
+                      >
+                        Add to Cart
+                      </button>
+                    )}
                   </motion.div>
                 ))}
               </div>

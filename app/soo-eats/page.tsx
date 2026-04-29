@@ -32,7 +32,7 @@ export default function SooEatsPage() {
           <p className="text-[11px] uppercase tracking-[0.35em] text-orange-400 mb-4">
             Our Products
           </p>
-          <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl">
+          <h1 className="font-logo font-bold text-4xl sm:text-5xl md:text-6xl">
             SOOEATS Nutrition
           </h1>
           <p className="text-white/60 text-lg mt-4 max-w-lg mx-auto">

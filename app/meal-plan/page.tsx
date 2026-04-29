@@ -15,22 +15,22 @@ const fadeUp = {
 const plans = [
   {
     title: 'Balanced Essentials',
-    desc: 'A well-rounded mix of proteins, carbs, and healthy fats for everyday wellness.',
+    // desc: 'A well-rounded mix of proteins, carbs, and healthy fats for everyday wellness.',
     image: 'https://picsum.photos/seed/balanced-plan/600/800',
   },
   {
     title: 'High Protein',
-    desc: 'Lean proteins and nutrient-dense sides designed for active lifestyles.',
+    // desc: 'Lean proteins and nutrient-dense sides designed for active lifestyles.',
     image: 'https://picsum.photos/seed/protein-plan/600/800',
   },
   {
     title: 'Low Calories',
-    desc: 'Light, nutrient-dense meals under 500 calories that keep you satisfied.',
+    // desc: 'Light, nutrient-dense meals under 500 calories that keep you satisfied.',
     image: 'https://picsum.photos/seed/plant-plan/600/800',
   },
   {
     title: 'Custom Plan',
-    desc: 'Tell us your goals and dietary needs. We will build a plan just for you.',
+    // desc: 'Tell us your goals and dietary needs. We will build a plan just for you.',
     image: 'https://picsum.photos/seed/custom-plan/600/800',
   },
 ];
@@ -91,7 +91,7 @@ export default function MealPlanPage() {
                     src={plan.image}
                     alt={plan.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="object-cover blur-md group-hover:scale-105 transition-transform duration-700"
                   />
                   {/* Coming soon overlay */}
                   <div className="absolute inset-0 bg-brown-900/30 flex items-center justify-center">
@@ -101,7 +101,7 @@ export default function MealPlanPage() {
                   </div>
                 </div>
                 <h3 className="font-display font-bold text-lg text-brown-900 mb-1">{plan.title}</h3>
-                <p className="text-brown-400 text-sm leading-relaxed">{plan.desc}</p>
+                {/* <p className="text-brown-400 text-sm leading-relaxed">{plan.desc}</p> */}
               </motion.div>
             ))}
           </div>

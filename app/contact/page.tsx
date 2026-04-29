@@ -55,7 +55,7 @@ export default function ContactPage() {
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://picsum.photos/seed/contact-hero/1600/800"
+            src="/Contact.png"
             alt="Contact us"
             fill
             className="object-cover"

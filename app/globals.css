@@ -164,3 +164,7 @@ body {
 
 /* Selection */
 ::selection { background: var(--orange-200); color: var(--brown-900); }
+::-webkit-scrollbar-thumb:hover { background: var(--brown-400); }
+
+/* Selection */
+::selection { background: var(--orange-200); color: var(--brown-900); }

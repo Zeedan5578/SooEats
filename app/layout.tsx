@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display, Cinzel_Decorative } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display, Chewy } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -17,10 +17,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const cinzelDecorative = Cinzel_Decorative({
+const chewy = Chewy({
   variable: "--font-logo",
   subsets: ["latin"],
-  weight: ["700", "700", "900"],
+  weight: ["400"],
 });
 
 const playfair = Playfair_Display({
@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${cinzelDecorative.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${chewy.variable} antialiased`}
       >
         <CartProvider>
           <Navbar />
